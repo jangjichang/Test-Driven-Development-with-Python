@@ -1,8 +1,8 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(2)
@@ -13,6 +13,7 @@ class NewVisitorTest(LiveServerTestCase):
     #     self.assertIn(row_text, [row.text for row in rows])
     
     def tearDown(self):
+        self.browser.refresh()
         self.browser.quit()
 
     # def test_can_start_a_list_and_retrieve_it_later(self):
